@@ -47,3 +47,15 @@ Thumbs.db
 *.tmp
 *.bak
 ~*
+
+# ============ 根目录临时调试/审计脚本 ============
+fix_*.py
+audit_*.py
+add_*.py
+delete_*.py
+*_debug.py
+
+# ============ 根目录个人文档/脚本（不入库） ============
+*.markdown
+start-dev.bat
+项目审计报告*.md
