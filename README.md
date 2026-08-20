@@ -103,6 +103,4 @@ npm run dev
 └── admin/            # 管理后台（独立 React + Vite 项目）
 ```
 
-## License
 
-MIT
