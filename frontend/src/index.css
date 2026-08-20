@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================
+   🌈 主题系统（CSS 变量）
+   ============================ */
+
+/* 深色主题（默认 — 科技风，黑底橙蓝） */
+:root,
+[data-theme='dark'] {
+  --bg-body: #0a0e1a;
+  --bg-panel: #111827;
+  --bg-card: #1a2332;
+  --bg-overlay: rgba(10, 14, 26, 0.7);
+  --border: #2a3a4e;
+  --border-hover: #3b82f6;
+
+  --accent: #f97316;           /* 主色橙 */
+  --accent-light: #fb923c;
+  --accent-2: #3b82f6;         /* 辅色蓝 */
+  --accent-2-light: #60a5fa;
+  --accent-2-deep: #1d4ed8;
+
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --gradient-brand: linear-gradient(135deg, #f97316 0%, #3b82f6 100%);
+  --gradient-hero: linear-gradient(180deg, #0a0e1a 0%, #111827 50%, #0a0e1a 100%);
+  --glow-accent: radial-gradient(ellipse at center, rgba(249,115,22,0.15) 0%, transparent 70%);
+  --glow-accent-2: radial-gradient(ellipse at center, rgba(59,130,246,0.15) 0%, transparent 70%);
+  --shadow-accent: 0 0 20px rgba(249,115,22,0.3);
+  --shadow-accent-2: 0 0 20px rgba(59,130,246,0.3);
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-card-hover: 0 8px 32px rgba(0,0,0,0.6);
+
+  --scrollbar-track: #111827;
+  --scrollbar-thumb: #2a3a4e;
+  --scrollbar-thumb-hover: #3b82f6;
+
+  --grid-line: rgba(42, 58, 78, 0.3);
+}
+
+/* 浅色主题（白底橙绿） */
+[data-theme='light'] {
+  --bg-body: #f5f5f0;
+  --bg-panel: #ffffff;
+  --bg-card: #ffffff;
+  --bg-overlay: rgba(0, 0, 0, 0.08);
+  --border: #d4d4c8;
+  --border-hover: #22c55e;
+
+  --accent: #f97316;           /* 主色橙 */
+  --accent-light: #fb923c;
+  --accent-2: #22c55e;         /* 辅色绿 */
+  --accent-2-light: #4ade80;
+  --accent-2-deep: #16a34a;
+
+  --text: #1c1917;
+  --text-muted: #555555;
+  --text-dim: #888888;
+
+  --gradient-brand: linear-gradient(135deg, #f97316 0%, #22c55e 100%);
+  --gradient-hero: linear-gradient(180deg, #f5f5f0 0%, #ffffff 50%, #f5f5f0 100%);
+  --glow-accent: radial-gradient(ellipse at center, rgba(249,115,22,0.1) 0%, transparent 70%);
+  --glow-accent-2: radial-gradient(ellipse at center, rgba(34,197,94,0.1) 0%, transparent 70%);
+  --shadow-accent: 0 0 20px rgba(249,115,22,0.2);
+  --shadow-accent-2: 0 0 20px rgba(34,197,94,0.2);
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-card-hover: 0 6px 24px rgba(0,0,0,0.12);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+
+  --scrollbar-track: #e5e5e0;
+  --scrollbar-thumb: #c0c0b8;
+  --scrollbar-thumb-hover: #22c55e;
+
+  --grid-line: rgba(180, 180, 170, 0.25);
+}
+
+/* ============================
+   全局基础样式
+   ============================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* ============================
+   Tailwind 组件层
+   ============================ */
+@layer components {
+  .glow-border {
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  .glow-border:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+  }
+
+  .btn-primary {
+    @apply px-6 py-2.5 text-white font-semibold rounded-lg transition-all duration-300;
+    background-color: var(--accent);
+    box-shadow: var(--shadow-accent);
+  }
+  .btn-primary:hover {
+    background-color: var(--accent-light);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  }
+
+  .btn-secondary {
+    @apply px-6 py-2.5 bg-transparent font-semibold rounded-lg transition-all duration-300;
+    color: var(--accent-2);
+    border: 1px solid var(--accent-2);
+  }
+  .btn-secondary:hover {
+    background-color: var(--accent-2);
+    color: white;
+  }
+
+  .section-title {
+    color: var(--text);
+    @apply text-2xl font-bold;
+  }
+
+  .card-base {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-card);
+  }
+  .card-base:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  /* 网格线装饰 */
+  .grid-bg {
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* 角标装饰 */
+  .corner-decoration {
+    position: relative;
+  }
+  .corner-decoration::before,
+  .corner-decoration::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: var(--accent);
+  }
+  .corner-decoration::before {
+    top: -1px;
+    left: -1px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+  }
+  .corner-decoration::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+  }
+
+  /* 扫描线动画 */
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  .scanline::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(transparent, rgba(59, 130, 246, 0.03), transparent);
+    animation: scanline 8s linear infinite;
+    pointer-events: none;
+  }
+
+  /* 脉冲点 */
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .pulse-dot {
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+}

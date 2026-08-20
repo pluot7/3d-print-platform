@@ -1,0 +1,12 @@
+登录前台和管理后台：
+
+```
+# 终端1 — 前台（3000端口）
+cd E:\3d\frontend
+npx vite --port 3000 --host 0.0.0.0 --strictPort
+
+# 终端2 — 管理后台（3002端口）
+cd E:\3d\frontend
+npx vite --port 3002 --host 0.0.0.0 --strictPort
+```
+
